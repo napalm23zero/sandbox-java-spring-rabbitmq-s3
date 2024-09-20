@@ -18,7 +18,7 @@ LABEL email="rodrigo.dantas@hustletech.dev"
 # Installing a bunch of stuff because every ninja needs some tools.
 # Maven for building, Git for tracking, Python for scripting, and Curl for... well, curling up with your code.
 RUN apt-get update && \
-    apt-get install -y maven git python3 curl && \
+    apt-get install -y maven git python3 curl python3 python3-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

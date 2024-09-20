@@ -3,7 +3,6 @@
     "dockerComposeFile": "./docker-compose.yaml",
     "service": "sandbox-sinqia-springboot", 
     "workspaceFolder": "/workspace",
-    // "postCreateCommand": ".devcontainer/entrypoint.sh",
     "customizations": {
       "vscode": {
         "extensions": [

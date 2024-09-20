@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   sandbox-sinqia-rabbitmq:
     build:
@@ -38,6 +36,28 @@ services:
         max-file: '3'
     volumes:
       - ../:/workspace
+      - ../scripts:/workspace/scripts
+      - ../img:/workspace/img
+    networks:
+      - dev-network
+
+  sandbox-sinqia-python-worker:
+    build: 
+      context: ..
+      dockerfile: .devcontainer/dockerfiles/python-worker.Dockerfile
+    container_name: sandbox-sinqia-python-worker
+    volumes:
+      - ../scripts:/workspace/scripts
+      - ../img:/workspace/img
+    depends_on:
+      - sandbox-sinqia-rabbitmq
+    environment:
+      - RABBITMQ_HOST=sandbox-sinqia-rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_INTERNAL_PORT_AMQP}
+      - RABBITMQ_USERNAME=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_DEFAULT_PASS}
+      - IMAGE_SAVE_DIRECTORY=/workspace/img
+    command: python3 /workspace/scripts/worker.py
     networks:
       - dev-network
 
