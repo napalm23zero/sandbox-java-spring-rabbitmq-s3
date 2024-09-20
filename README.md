@@ -3,6 +3,8 @@
 
 # Instruções para Executar o Devcontainer e Testar a Aplicação
 
+![Image](docs/Screenshot%202024-09-20%20074716.png)
+
 ## Pré-requisitos
 
 1. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
