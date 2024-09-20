@@ -1,3 +1,14 @@
+# ┌─────────────────────────────────────┐
+# │  The Dark Side of Devcontainers     │
+# │                                     │
+# │  For dev and study use ONLY.        │
+# │  Deploy this to production?         │
+# │  I will personally find you,        │
+# │  and trust me, you won’t like it.   │
+# │                                     │
+# │  *You've been warned, apprentice.*  │
+# └─────────────────────────────────────┘
+
 # Start with a lightweight Python image
 FROM python:3.9-slim
 

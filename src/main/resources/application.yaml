@@ -11,9 +11,19 @@ thread:
 
 image:
   save:
-    directory: ${IMAGE_SAVE_DIRECTORY:/tmp}
+    directory: ${IMAGE_SAVE_DIRECTORY:/workspace/img}
 
 rabbitmq:
   queue:
     colored: ${RABBITMQ_QUEUE_COLORED:images-colored}
     bw: ${RABBITMQ_QUEUE_BW:images-bw}
+
+minio:
+  endpoint: "http://sandbox-sinqia-minio:${MINIO_INTERNAL_PORT:9000}"
+  access:
+    key: ${MINIO_ACCESS_KEY:minioadmin}
+  secret:
+    key: ${MINIO_SECRET_KEY:minioadmin}
+  region: "us-east-1"
+  bucket:
+    name: "images-bucket"

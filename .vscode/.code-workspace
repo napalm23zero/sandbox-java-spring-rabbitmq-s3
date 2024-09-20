@@ -1,0 +1,100 @@
+{
+  "folders": [
+    {
+      "path": "../",
+      "name": "sandbox-java-spring-rabbitmq-s3"
+    }
+  ],
+  "settings": {
+    "window.title": "sandbox-java-spring-rabbitmq-s3",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "remote.autoForwardPorts": true,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#3f330d",
+      "titleBar.activeBackground": "#3f330d",
+      "titleBar.activeForeground": "#FFFFFF"
+    },
+    "workbench.colorTheme": "One Dark Pro Mix",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
+    "window.zoomLevel": -1,
+    "git.autofetch": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "/workspace/.vscode/java-formatter.xml",
+    "java.format.settings.profile": "GoogleStyle",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.java", 
+    "[java]": {
+      "editor.defaultFormatter": "redhat.java"
+    },
+    "prettier.configPath": "/workspace/.prettierrc",
+    "prettier.requireConfig": false,
+    "[xml]": {
+      "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "[ignore]": {
+      "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[dockerfile]": {
+      "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "[dotenv]": {
+      "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "request": "launch",
+        "name": "Spring Boot Dev",
+        "mainClass": "dev.hustletech.sandbox_java_spring_rabbitmq_s3.SandboxJavaSpringRabbitmqS3Application", 
+        "projectName": "sandbox-java-spring-rabbitmq-s3",
+        "env": {
+          "SPRING_PROFILES_ACTIVE": "dev",
+          "RABBITMQ_HOST": "sandbox-sinqia-rabbitmq",
+          "RABBITMQ_PORT_AMQP": "5672",
+          "RABBITMQ_USERNAME": "guest",
+          "RABBITMQ_PASSWORD": "password",
+          "THREAD_POOL_SIZE": "5",
+          "IMAGE_SAVE_DIRECTORY": "/workspace/img",
+          "RABBITMQ_QUEUE_COLORED": "images-colored",
+          "RABBITMQ_QUEUE_BW": "images-bw",
+          "MINIO_ACCESS_KEY": "minioadmin",
+          "MINIO_SECRET_KEY": "minioadmin",
+          "MINIO_INTERNAL_PORT": "9000",
+        },
+        "console": "integratedTerminal"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "kill-port",
+        "type": "shell",
+        "command": "lsof -ti :8080 | xargs kill -9",
+        "problemMatcher": []
+      },
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "mvn clean install",
+        "problemMatcher": []
+      },
+      {
+        "label": "run-dev",
+        "type": "shell",
+        "command": "mvn spring-boot:run -Dspring-boot.run.profiles=dev",
+        "problemMatcher": []
+      },
+    ]
+  }
+}
