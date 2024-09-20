@@ -27,6 +27,12 @@ public class RabbitMQConfig {
     @Value("${RABBITMQ_PASSWORD:guest}")
     private String rabbitmqPassword;
 
+    @Value("${RABBITMQ_QUEUE_COLORED:images-colored}")
+    private String coloredQueue;
+
+    @Value("${RABBITMQ_QUEUE_BW:images-bw}")
+    private String bwQueue;
+
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitmqHost, rabbitmqPort);
@@ -45,5 +51,17 @@ public class RabbitMQConfig {
     public Queue testQueue() {
         logger.info("Declaring 'test.queue'");
         return new Queue("test.queue", true);
+    }
+
+    @Bean
+    public Queue imagesColoredQueue() {
+        logger.info("Declaring 'images-colored' queue");
+        return new Queue(coloredQueue, true);
+    }
+
+    @Bean
+    public Queue imagesBWQueue() {
+        logger.info("Declaring 'images-b&w' queue");
+        return new Queue(bwQueue, true);
     }
 }

@@ -7,24 +7,25 @@
     "customizations": {
       "vscode": {
         "extensions": [
-          "vscjava.vscode-java-pack",                
-          "pivotal.vscode-spring-boot",              
-          "pivotal.vscode-spring-initializr",        
-          "GabrielBB.vscode-lombok",                 
-          "redhat.java",                             
-          "redhat.vscode-yaml",                      
-          "foxundermoon.shell-format",               
-          "editorconfig.editorconfig",               
-          "ms-azuretools.vscode-docker",             
-          "eamodio.gitlens",                         
-          "formulahendry.docker-explorer",           
-          "adpyke.codesnap",                         
-          "GitHub.vscode-github-actions",            
-          "HashiCorp.terraform",                     
-          "ms-aws.toolkit",                          
-          "jebbs.plantuml",                          
-          "k--kato.intellij-idea-keybindings",       
-          "mikestead.dotenv"                         
+            "vscjava.vscode-java-pack",
+            "pivotal.vscode-spring-boot",
+            "pivotal.vscode-spring-initializr",
+            "GabrielBB.vscode-lombok",
+            "redhat.java",
+            "redhat.vscode-yaml",
+            "foxundermoon.shell-format",
+            "editorconfig.editorconfig",
+            "ms-azuretools.vscode-docker",
+            "eamodio.gitlens",
+            "formulahendry.docker-explorer",
+            "adpyke.codesnap",
+            "GitHub.vscode-github-actions",
+            "HashiCorp.terraform",
+            "ms-aws.toolkit",
+            "jebbs.plantuml",
+            "k--kato.intellij-idea-keybindings",
+            "mikestead.dotenv",
+            "redhat.vscode-xml"
         ]     
     }
   }

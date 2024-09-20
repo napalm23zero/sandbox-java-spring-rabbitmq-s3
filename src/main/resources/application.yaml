@@ -1,4 +1,19 @@
-spring.rabbitmq.host: ${RABBITMQ_HOST:sandbox-sinqia-rabbitmq}
-spring.rabbitmq.port: ${RABBITMQ_PORT_AMQP:5672}
-spring.rabbitmq.username: ${RABBITMQ_USERNAME:guest}
-spring.rabbitmq.password: ${RABBITMQ_PASSWORD:guest}
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:sandbox-sinqia-rabbitmq}
+    port: ${RABBITMQ_PORT_AMQP:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+thread:
+  pool:
+    size: ${THREAD_POOL_SIZE:5}
+
+image:
+  save:
+    directory: ${IMAGE_SAVE_DIRECTORY:/tmp}
+
+rabbitmq:
+  queue:
+    colored: ${RABBITMQ_QUEUE_COLORED:images-colored}
+    bw: ${RABBITMQ_QUEUE_BW:images-bw}
