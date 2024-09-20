@@ -1,0 +1,4 @@
+spring.rabbitmq.host: ${RABBITMQ_HOST:sandbox-sinqia-rabbitmq}
+spring.rabbitmq.port: ${RABBITMQ_PORT_AMQP:5672}
+spring.rabbitmq.username: ${RABBITMQ_USERNAME:guest}
+spring.rabbitmq.password: ${RABBITMQ_PASSWORD:guest}

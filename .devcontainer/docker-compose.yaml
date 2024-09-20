@@ -1,0 +1,78 @@
+version: '3.7'
+
+services:
+  sandbox-sinqia-rabbitmq:
+    build:
+      context: ..
+      dockerfile: .devcontainer/dockerfiles/rabbitmq.Dockerfile
+    container_name: sandbox-sinqia-rabbitmq
+    ports:
+      - '${RABBITMQ_PORT_AMQP}:${RABBITMQ_INTERNAL_PORT_AMQP}' # AMQP port
+      - '${RABBITMQ_PORT_MANAGEMENT}:${RABBITMQ_INTERNAL_PORT_MANAGEMENT}' # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+    command: ['rabbitmq-server']
+    networks:
+      - dev-network
+
+  sandbox-sinqia-springboot:
+    build:
+      context: ..
+      dockerfile: .devcontainer/dockerfiles/springboot.Dockerfile
+    container_name: sandbox-sinqia-springboot
+    ports:
+      - '${SPRINGBOOT_PORT}:${SPRINGBOOT_INTERNAL_PORT}'
+    depends_on:
+      - sandbox-sinqia-rabbitmq
+      - sandbox-sinqia-minio
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+    volumes:
+      - ../:/workspace
+    networks:
+      - dev-network
+
+  sandbox-sinqia-minio:
+    build:
+      context: ..
+      dockerfile: .devcontainer/dockerfiles/minio.Dockerfile
+    container_name: sandbox-sinqia-minio
+    ports:
+      - '${MINIO_PORT}:${MINIO_INTERNAL_PORT}'
+      - '${MINIO_CONSOLE_PORT}:${MINIO_INTERNAL_CONSOLE_PORT}'
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    volumes:
+      - ./data/minio:/data
+    networks:
+      - dev-network
+
+  sandbox-sinqia-awscli:
+    build:
+      context: ..
+      dockerfile: .devcontainer/dockerfiles/awscli.Dockerfile
+    container_name: sandbox-sinqia-awscli
+    depends_on:
+      - sandbox-sinqia-minio
+    volumes:
+      - ../:/workspace
+    networks:
+      - dev-network
+
+volumes:
+  sandbox-sinqia-minio-data:
+    driver: local
+
+networks:
+  dev-network:
+    driver: bridge
